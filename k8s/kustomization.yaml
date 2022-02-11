@@ -1,0 +1,10 @@
+configMapGenerator:
+- name: manager.conf
+  files:
+  - manager.conf
+- name: worker.conf
+  files:
+  - worker.conf
+resources:
+  - tunasync-manager-deployment.yaml
+  - tunasync-worker-deployment.yaml

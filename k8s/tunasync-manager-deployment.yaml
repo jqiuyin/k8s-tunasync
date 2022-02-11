@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tunasync-manager
+  labels:
+    app: tunasync
+spec:
+  ports:
+    - port: 12345
+  selector:
+    app: tunasync
+    tier: manager
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tunasync-manager-pv-claim
+  labels:
+    app: tunasync
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tunasync-manager
+  labels:
+    app: tunasync
+spec:
+  selector:
+    matchLabels:
+      app: tunasync
+      tier: manager
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tunasync
+        tier: manager
+    spec:
+      containers:
+      - image: qiuyin/tunasync-manager
+        name: manager
+        ports:
+        - containerPort: 12345
+          name: manager
+        volumeMounts:
+        - name: tunasync-manager-persistent-storage
+          mountPath: /tunasync/db
+        - name: config
+          mountPath: "/tunasync/config"
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: manager.conf
+          items:
+          - key: "manager.conf"
+            path: "manager.conf"
+      - name: tunasync-manager-persistent-storage
+        persistentVolumeClaim:
+          claimName: tunasync-manager-pv-claim
