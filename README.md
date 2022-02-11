@@ -4,7 +4,7 @@
 
 ## 使用方法
 
-`kubectl kustomize .\k8s\ | kubectl -n tunasync apply -f -`
+`kubectl kustomize ./k8s | kubectl -n tunasync apply -f -`
 
 ## 参考
 
