@@ -1,0 +1,7 @@
+configMapGenerator:
+- name: worker.conf
+  files:
+  - worker.conf
+  behavior: merge
+bases:
+- ../../base

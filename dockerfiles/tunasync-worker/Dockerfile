@@ -1,4 +1,5 @@
 FROM ubuntu
+RUN apt update && apt install -y rsync
 RUN mkdir /tunasync
 WORKDIR /tunasync
 ADD https://github.com/tuna/tunasync/releases/latest/download/tunasync-linux-amd64-bin.tar.gz ./
