@@ -34,8 +34,7 @@ metadata:
     app: tunasync
 spec:
   accessModes:
-    - ReadWriteOnce
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
