@@ -5,3 +5,5 @@ configMapGenerator:
   behavior: merge
 bases:
 - ../../base
+patchesStrategicMerge:
+- PersistentVolumeClaim.yaml

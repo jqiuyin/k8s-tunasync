@@ -8,3 +8,4 @@ configMapGenerator:
 resources:
   - tunasync-manager-deployment.yaml
   - tunasync-worker-deployment.yaml
+  - tunasync-nginx-deployment.yaml

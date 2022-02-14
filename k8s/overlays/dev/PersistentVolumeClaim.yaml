@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tunasync-worker-mirror-pv-claim
+spec:
+  storageClassName: "cinder-multiattach"
